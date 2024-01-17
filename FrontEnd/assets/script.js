@@ -13,6 +13,7 @@ async function getWorks() {
         return await response.json();
     } catch (error) {
         console.error("Erreur lors de la récupération des travaux : ", error);
+        console.error()
     }
 }
 
@@ -22,17 +23,13 @@ async function getWorks() {
 async function displayWorks() {
     const works = await getWorks();
     works.forEach((work) => {
-        ListOfWorks(work);
+        listOfWorks(work);
     })
 }
 
-/* Appel de la fonction pour afficher les travaux */
-displayWorks();
-
 /* Cette fonction crée et ajoute un élément pour chaque travail dans le DOM */
-function ListOfWorks(work) {
+function listOfWorks(work) {
     const figure = document.createElement("figure");
-    figure.classList.add('fade');
     const img = document.createElement("img");
     const figcaption = document.createElement("figcaption");
     img.src = work.imageUrl;
@@ -51,6 +48,7 @@ async function getCategories() {
         return await response.json();
     } catch (error) {
         console.error("Erreur lors de la récupération des catégories : ", error);
+        console.error();
     }
 }
 
@@ -65,9 +63,6 @@ async function displayCategories() {
     });
 }
 
-/* Appel de la fonction pour afficher les catégories */
-displayCategories();
-
 /* Cette fonction filtre les travaux en fonction de la catégorie sélectionnée */
 async function filterCategories() {
     const works = await getWorks();
@@ -76,18 +71,9 @@ async function filterCategories() {
         button.addEventListener("click", (e) => {
             const btnId = e.target.id;
             gallery.textContent = "";
-            let filteredWorks;
-            if (btnId !== "0") {
-                filteredWorks = works.filter((work) => {
-                    return work.categoryId == btnId;
-                });
-            }
-            else {
-                filteredWorks = works;
-            }
-            filteredWorks.forEach(work => {
-                ListOfWorks(work);
-            });
+            works
+                .filter(work => btnId ? work.categoryId == btnId :true)
+                .forEach(work => {listOfWorks(work)});
             setTimeout(() => {
                 document.querySelectorAll('.gallery figure').forEach(el => el.classList.add('show'));
             }, 100);
@@ -97,6 +83,12 @@ async function filterCategories() {
         });
     });
 }
+
+/* Appel de la fonction pour afficher les travaux */
+displayWorks();
+
+/* Appel de la fonction pour afficher les catégories */
+displayCategories();
 
 /* Appel de la fonction pour filtrer les catégories */
 filterCategories();
