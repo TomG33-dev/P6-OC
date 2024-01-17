@@ -53,12 +53,15 @@ function handleFormSubmit(e) {
 function checkUserStatus() {
     const topBar = document.querySelector(".top-bar");
     const header = document.querySelector("header");
-    topBar.style.display = "none"; /* Cachez la barre supérieure par défaut */
 
-    if (localStorage.getItem("token")) { /* Si le token est présent dans le localStorage */
-        loginLink.textContent = "Logout";
-        topBar.style.display = "block";
-        header.classList.add("connected");
+    if (topBar && header) {
+        topBar.style.display = "none"; /* Cachez la barre supérieure par défaut */
+
+        if (localStorage.getItem("token")) { /* Si le token est présent dans le localStorage */
+            loginLink.textContent = "Logout";
+            topBar.style.display = "block";
+            header.classList.add("connected");
+        }
     }
 }
 
