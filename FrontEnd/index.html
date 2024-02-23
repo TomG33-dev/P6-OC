@@ -92,7 +92,37 @@
 		<h2>Galerie photo</h2>
 	  	<div class="listworks-modal"></div>
 		<hr>
-		<button>Ajouter une photo</button>
+		<button id="open-modal-button">Ajouter une photo</button>
+	</div>
+</div>
+
+<div id="add-modal" class="modal">
+	<div class="add-modal-content">
+		<i class="fa-solid fa-arrow-left"></i>
+		<i class="fa-solid fa-xmark"></i>
+		<h2>Ajout photo</h2>
+		<form id="add-modal-content-form" action="#">
+			<div class="add-modal-content-image">
+				<img id="addimage" src="#" style="display: none;">
+				<i class="far fa-image fa-5x"></i>
+				<label class="add-modal-content-label">
+					<span class="add-modal-content-add">+ Ajouter photo</span>
+					<input type="file" id="image" name="image" accept="image/jpeg, image/png" hidden>
+				</label>
+				<p>JPG, PNG : 4mo max</p>
+			</div>
+
+			<div class="add-modal-content-input">
+				<label>Titre</label>
+				<input type="text" id="title" name="title">
+			</div>
+			<div class="add-modal-content-input">
+				<label>Catégorie</label>
+				<select class="add-modal-content-select" id="category" name="category"></select>
+			</div>
+		</form>
+		<hr>
+		<button id="submit-button" disabled>Valider</button>
 	</div>
 </div>
 
