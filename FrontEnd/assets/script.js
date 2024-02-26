@@ -121,6 +121,7 @@ function initUI() {
         topBar.style.display = "block";
         editSpan.style.display = "inline";
         header.classList.add("connected");
+        filters.style.display = "none";
 
         editSpan.addEventListener("click", openModal)
         logoutLink.addEventListener("click", logout)
@@ -134,6 +135,7 @@ function initUI() {
     } else {
         loginLink.style.display = "block";
         logoutLink.style.display = "none";
+        filters.style.display = "flex";
     }
 }
 
@@ -233,7 +235,7 @@ fileInput.addEventListener("change", function(event) {
             imageContainer.appendChild(previewImage);
 
             if (titleInput.value.trim() !== "") {
-                submitButton.disabled = false; // Active le bouton
+                submitButton.disabled = false;
             }
         });
 
@@ -264,6 +266,7 @@ function resetModal() {
     previewImage.style.display = "none";
     selectElement.value = "";
     titleInput.value = "";
+    submitButton.disabled = true;
 }
 
 /* Fermeture de la addModal pendant l'ajout d'image */
@@ -333,6 +336,7 @@ async function addWork(event) {
                 displayWorks();
                 closeModal();
                 addModal.style.display = "none";
+                resetModal();
             }
 
         } catch (error) {
