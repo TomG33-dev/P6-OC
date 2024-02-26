@@ -195,6 +195,8 @@ function deleteWorks() {
             .then((response) => {
                 if (!response.ok) {
                     console.log("Erreur lors de la suppression de l'image")
+                } else {
+                    console.log("L'image a bien été supprimée");
                 }
                 displayWorks().then(() => {
                     displayWorksModal()
@@ -327,6 +329,7 @@ async function addWork(event) {
             });
 
             if (response.status === 201) {
+                console.log("La nouvelle image a bien été ajoutée");
                 displayWorks();
                 closeModal();
                 addModal.style.display = "none";

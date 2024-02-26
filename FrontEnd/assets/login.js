@@ -6,9 +6,7 @@ const password = document.querySelector("form #password");
 const errorDiv = document.querySelector(".errordiv")
 
 
-function handleError(e) {
-    errorDiv.textContent = e;
-}
+
 
 /* Envoie une requête de connexion à l'API */
 function loginUser(data) {
@@ -28,7 +26,9 @@ function loginUser(data) {
         localStorage.setItem("token", data.token); /* Stocke le token dans le localStorage */
         window.location.href = "index.html";
     })
-    .catch(handleError) /* Console.error sera executé avec comme premier paramètre error */
+    .catch(error => {
+        errorDiv.textContent = error.message;
+    });
 }
 
 /* Gère la soumission du formulaire */
@@ -40,7 +40,7 @@ function handleFormSubmit(e) {
         password: password.value
     };
 
-    loginUser(data) /* Envoie une requête de connexion à l'API */
+    loginUser(data); /* Envoie une requête de connexion à l'API */
 }
 
 form.addEventListener("submit", handleFormSubmit);

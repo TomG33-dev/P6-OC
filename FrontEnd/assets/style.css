@@ -331,6 +331,14 @@ footer nav ul {
 	text-decoration: underline;
 }
 
+.errordiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+	color: red;
+}
+
 /*** Admin ***/
 
 .top-bar {
